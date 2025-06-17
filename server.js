@@ -1,7 +1,13 @@
+require('dotenv').config();
+
 const express = require('express');
 const axios = require('axios');
 const { JWT } = require('google-auth-library');
-const serviceAccount = require('./service-account.json');
+const serviceAccount = {
+  project_id: process.env.PROJECT_ID,
+  private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.CLIENT_EMAIL,
+};
 
 const app = express();
 app.use(express.json());
